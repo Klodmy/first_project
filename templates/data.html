@@ -1,0 +1,14 @@
+{% extends 'diary.html' %}
+
+{% block title %}
+    My Data
+{% endblock %}
+
+{% block main %}
+    {% if lines %}
+        <h2 style="margin: auto;">My trackers: </h2>
+        {{ lines|safe }}
+    {% else %}
+        <h2>You don't have any data yet</h2> 
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'diary.html' %}
+
+{% block title %}
+    My Settings
+{% endblock %}
+
+{% block main %}
+    <form id="add_activity" action="/settings" method="post">
+        <label for="activity">Add activity to track: </label>
+        <p style="padding-top: 10px;"><input type="text" name="activity" id="activity" autofocus required minlength="2" autocomplete="off"></p>
+        <p><button type="submit" class="my-buttons">Add</button></p>
+    </form>
+    <div id="error-flash" style="margin: auto; padding-top: 20px; text-align: center;">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}            
+            {% for message in messages %}
+                <p style="border: 0.5px solid lightblue">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    </div>
+    <div id="my-activities">
+        <h3>My activities:</h3>
+        {% if activities %}
+            <table style="margin: auto;">
+            {% for a in activities %}
+                <tr>
+                    <td style="padding-right: 50px; text-align: left;">
+                        {{ a[0] }} 
+                    </td>
+                    <td>
+                        <form action="/delete_activity" method="POST">
+                            <input type="hidden" name="this_activity" value="{{ a[0] }}">
+                            <button type="submit" class="my-buttons">Delete</button>
+                        </form>
+                    </td>
+                <tr>
+            {% endfor %}
+            </table>
+        {% else %}
+            <p style="padding-top: 10px;">You haven't added any activities yet. Please use the form above to add the first one!</p>
+        {% endif %}
+    </div>
+{% endblock %}}

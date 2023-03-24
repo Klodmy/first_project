@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block main %}
+    <div class="myform">
+        <form action="/login" method="post" style="padding-top: 110px;">
+                <p><input type="text" class="textrow" name="username" id="username" placeholder="Username" autocomplete="off" autofocus required minlength="3" maxlength="20"></p>
+                <p><input type="password" class="textrow" name="password" id="password" placeholder="Password" autocomplete="off" required minlength="5" maxlength="20"></p>
+                <p>Don't have account yet? <a href="/sign-up">Sign-Up</a>.</p>
+                <p style="padding-top: 70px;"><button class="my-buttons">Login</button></p>
+    </form>
+    {{ psw }}
+    {{ pw }}
+{% endblock %}}
